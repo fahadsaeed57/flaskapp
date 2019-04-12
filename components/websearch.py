@@ -9,15 +9,10 @@ from urllib.error import HTTPError
 app = Flask(__name__)
 def formatlinks(data):
     links = data.get("links")
-    links = links[1:len(links)-1]
-    linksspliting = links.split("'")
-    output = "The links we found use ful are \n"
-    newlinks = []
-    for link in linksspliting:
-        if "http" in link:
-            newlinks.append(link)
-    for newlink in newlinks:
-        output = output + newlink + "\n"
+    links = links[:]
+    output = "I think these links might be useful to you ;p \n"
+    for link in links:
+        output = output + link + "\n"
     return { "speech" : output} 
 def processRequest(req):
     # if req.get("result").get("action") != "web.search":
@@ -32,10 +27,10 @@ def processRequest(req):
     
     if number and int(number) > 0 and int(number) <= 10:
         baseurl = "https://googlesearchapp.herokuapp.com/?"+q+"&limit="+str(number)
-    # elif int(number) > 10 or int(number) < 0:
+    # elif int(str(number)) > 10 or int(str(number) < 0:
     #     return { "speech" : "Sorry more than 10 links are not allowed" }  
     elif not number:
-        baseurl = "https://googlesearchapp.herokuapp.com/?"+q+"&limit=2"
+        baseurl = "https://googlesearchapp.herokuapp.com/?"+q+"&limit=3"
     else:
         pass
     
