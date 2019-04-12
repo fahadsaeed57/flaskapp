@@ -10,7 +10,7 @@ app = Flask(__name__)
 def formatlinks(data):
     links = data.get("links")
     links = links[:]
-    output = "I think these links might be useful to you ;p \n"
+    output = "I think these links might be useful to you \n"
     for link in links:
         output = output + link + "\n"
     return { "speech" : output} 
